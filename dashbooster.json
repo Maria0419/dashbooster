@@ -1,0 +1,95 @@
+{
+  "name": "dashbooster",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "252c43f3-af2d-416a-a8c2-369796daf32b",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        1424,
+        272
+      ],
+      "id": "7d0f493a-e4ea-4e2f-996e-f70db37361af",
+      "name": "Webhook",
+      "webhookId": "252c43f3-af2d-416a-a8c2-369796daf32b"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={ \n  \"hostAppDataAction\": {\n    \"chatDataAction\": { \n      \"createMessageAction\": {\n        \"message\": { \n          \"text\": \"Ola\"\n        }\n      }\n    }\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1664,
+        80
+      ],
+      "id": "c401756a-503f-4c85-a480-92a12fb34f65",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "spaceId": "=spaces/oWiPfCAAAAE",
+        "message": "terminou de mandar tudo?",
+        "approvalOptions": {
+          "values": {
+            "approveLabel": "✅ Finalizar Envio"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleChat",
+      "typeVersion": 1,
+      "position": [
+        1696,
+        352
+      ],
+      "id": "f6c8740b-e79d-43f4-9326-163390d8f149",
+      "name": "Send message and wait for response",
+      "webhookId": "20dbfd23-5920-428a-82b6-f698e8ab76b9",
+      "credentials": {
+        "googleApi": {
+          "id": "M4PAw9n4QDsylbIn",
+          "name": "Google Service Account account 10"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send message and wait for response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "01e7497b-e8b1-485a-9678-b4530ffdbbd4",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2e63ccd4f29d72f29958f09af8199541961d350883dc0a37151512a5c6effc01"
+  },
+  "id": "7tn70lakaxmGNijE",
+  "tags": []
+}
